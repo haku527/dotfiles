@@ -24,8 +24,8 @@ def backup_replace(source: Path, target: Path):
 
 
 if __name__ == '__main__':
-    # folder = 'vimfiles' if is_windows else '.vim'
-    # backup_replace(repo, home.joinpath(folder))
+    folder = 'vimfiles' if is_windows else '.vim'
+    backup_replace(repo.joinpath('vim'), home.joinpath(folder))
     pwsh_win = home.joinpath('Documents', 'PowerShell')
     pwsh_unix = home.joinpath('.config', 'powershell')
     pwsh_profile = pwsh_win if is_windows else pwsh_unix
