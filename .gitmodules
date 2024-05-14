@@ -1,0 +1,16 @@
+[submodule "vim/pack/default/opt/everforest"]
+	path = vim/pack/default/opt/everforest
+	url = https://github.com/sainnhe/everforest
+[submodule "vim/pack/default/opt/lightline"]
+	path = vim/pack/default/opt/lightline
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim/pack/default/opt/wincap"]
+	path = vim/pack/default/opt/wincap
+	url = https://github.com/stillwwater/wincap.vim
+[submodule "vim/pack/default/opt/coc"]
+	path = vim/pack/default/opt/coc
+	url = https://github.com/neoclide/coc.nvim
+	branch = release
+[submodule "vim/pack/default/start/better-whitespace"]
+	path = vim/pack/default/start/better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace
