@@ -24,8 +24,11 @@ def backup_replace(source: Path, target: Path):
 
 
 if __name__ == '__main__':
+    # vim
     folder = 'vimfiles' if is_windows else '.vim'
     backup_replace(repo.joinpath('vim'), home.joinpath(folder))
+
+    # pwsh or powershell
     pwsh_win = home.joinpath('Documents', 'PowerShell')
     pwsh_unix = home.joinpath('.config', 'powershell')
     pwsh_profile = pwsh_win if is_windows else pwsh_unix
@@ -34,3 +37,14 @@ if __name__ == '__main__':
     # starship
     backup_replace(repo.joinpath('starship.toml'),
                    home.joinpath('.config', 'starship.toml'))
+
+    # gitconfig
+    gitconf = '.gitconfig'
+    backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
+
+    # windows-terminal-preview
+    wt = repo.joinpath('wt.json')
+    wtp_settings_path = home.joinpath('scoop', 'apps',
+                                      'windows-terminal-preview', 'current',
+                                      'settings', 'settings.json')
+    backup_replace(wt, wtp_settings_path)
