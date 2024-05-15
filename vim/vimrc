@@ -72,7 +72,7 @@ if has('gui_running')
     # 高亮当前行
     set cursorline
     # 高亮显示第80列
-    set colorcolumn=80
+    set colorcolumn=100
     # 浅色or深色
     set background=dark
     packadd everforest

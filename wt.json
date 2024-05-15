@@ -60,6 +60,11 @@
                 "name": "\u547d\u4ee4\u63d0\u793a\u7b26"
             },
             {
+                "adjustIndistinguishableColors": "indexed",
+                "font": 
+                {
+                    "face": "Maple Mono SC NF"
+                },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",

@@ -1,4 +1,5 @@
 import os
+import shutil
 from pathlib import Path
 from datetime import datetime
 
@@ -15,6 +16,9 @@ def backup_replace(source: Path, target: Path):
         target.rename(target.parent.joinpath(newname))
     target.symlink_to(source, target_is_directory=source.is_dir())
 
+def command_exists(command: str):
+    return shutil.which(command) != None
+
 # # python 3.11 兼容代码
 # def backup_replace(source: Path, target: Path):
 #     if target.exists():
@@ -25,26 +29,31 @@ def backup_replace(source: Path, target: Path):
 
 if __name__ == '__main__':
     # vim
-    folder = 'vimfiles' if is_windows else '.vim'
-    backup_replace(repo.joinpath('vim'), home.joinpath(folder))
+    if command_exists('vim'):
+        folder = 'vimfiles' if is_windows else '.vim'
+        backup_replace(repo.joinpath('vim'), home.joinpath(folder))
 
     # pwsh or powershell
-    pwsh_win = home.joinpath('Documents', 'PowerShell')
-    pwsh_unix = home.joinpath('.config', 'powershell')
-    pwsh_profile = pwsh_win if is_windows else pwsh_unix
-    backup_replace(repo.joinpath('powershell'), pwsh_profile)
+    if command_exists('pwsh'):
+        pwsh_win = home.joinpath('Documents', 'PowerShell')
+        pwsh_unix = home.joinpath('.config', 'powershell')
+        pwsh_profile = pwsh_win if is_windows else pwsh_unix
+        backup_replace(repo.joinpath('powershell'), pwsh_profile)
 
     # starship
-    backup_replace(repo.joinpath('starship.toml'),
-                   home.joinpath('.config', 'starship.toml'))
+    if command_exists('starship'):
+        backup_replace(repo.joinpath('starship.toml'),
+    home.joinpath('.config', 'starship.toml'))
 
     # gitconfig
-    gitconf = '.gitconfig'
-    backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
+    if command_exists('git'):
+        gitconf = '.gitconfig'
+        backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
 
     # windows-terminal-preview
-    wt = repo.joinpath('wt.json')
-    wtp_settings_path = home.joinpath('scoop', 'apps',
+    if command_exists('wtp'):
+        wt = repo.joinpath('wt.json')
+        wtp_settings_path = home.joinpath('scoop', 'apps',
                                       'windows-terminal-preview', 'current',
                                       'settings', 'settings.json')
-    backup_replace(wt, wtp_settings_path)
+        backup_replace(wt, wtp_settings_path)
