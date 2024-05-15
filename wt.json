@@ -44,7 +44,13 @@
     ],
     "profiles": 
     {
-        "defaults": {},
+        "defaults": 
+        {
+            "font": 
+            {
+                "face": "Maple Mono SC NF"
+            }
+        },
         "list": 
         [
             {
@@ -61,6 +67,7 @@
             },
             {
                 "adjustIndistinguishableColors": "indexed",
+                "colorScheme": "LiquidCarbon",
                 "font": 
                 {
                     "face": "Maple Mono SC NF"
@@ -78,6 +85,31 @@
             }
         ]
     },
-    "schemes": [],
+    "schemes": 
+    [
+        {
+            "background": "#303030",
+            "black": "#000000",
+            "blue": "#0099CC",
+            "brightBlack": "#000000",
+            "brightBlue": "#0099CC",
+            "brightCyan": "#7AC4CC",
+            "brightGreen": "#559A70",
+            "brightPurple": "#CC69C8",
+            "brightRed": "#FF3030",
+            "brightWhite": "#BCCCCC",
+            "brightYellow": "#CCAC00",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#7AC4CC",
+            "foreground": "#AFC2C2",
+            "green": "#559A70",
+            "name": "LiquidCarbon",
+            "purple": "#CC69C8",
+            "red": "#FF3030",
+            "selectionBackground": "#7DBEFF",
+            "white": "#BCCCCC",
+            "yellow": "#CCAC00"
+        }
+    ],
     "themes": []
 }
