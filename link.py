@@ -19,41 +19,43 @@ def backup_replace(source: Path, target: Path):
 def command_exists(command: str):
     return shutil.which(command) != None
 
-# # python 3.11 兼容代码
-# def backup_replace(source: Path, target: Path):
-#     if target.exists():
-#         newname = target.stem + timestamp + target.suffix
-#         target.rename(target.parent.joinpath(newname))
-#     target.symlink_to(source)
-
-
 if __name__ == '__main__':
-    # vim
-    if command_exists('vim'):
-        folder = 'vimfiles' if is_windows else '.vim'
-        backup_replace(repo.joinpath('vim'), home.joinpath(folder))
+    # wezterm
+    backup_replace(repo.joinpath('wezterm.lua'), home.joinpath('.wezterm.lua'))
 
-    # pwsh or powershell
-    if command_exists('pwsh'):
-        pwsh_win = home.joinpath('Documents', 'PowerShell')
-        pwsh_unix = home.joinpath('.config', 'powershell')
-        pwsh_profile = pwsh_win if is_windows else pwsh_unix
-        backup_replace(repo.joinpath('powershell'), pwsh_profile)
+    # nvim
+    if command_exists('nvim'):
+        winpath = home.joinpath('AppData', 'Local', 'nvim')
+        unixpath = home.joinpath('.config', 'nvim')
+        path = winpath if is_windows else unixpath
+        backup_replace(repo.joinpath('nvim', path)
 
-    # starship
-    if command_exists('starship'):
-        backup_replace(repo.joinpath('starship.toml'),
-    home.joinpath('.config', 'starship.toml'))
+    # # vim
+    # if command_exists('vim'):
+    #     folder = 'vimfiles' if is_windows else '.vim'
+    #     backup_replace(repo.joinpath('vim'), home.joinpath(folder))
 
-    # gitconfig
-    if command_exists('git'):
-        gitconf = '.gitconfig'
-        backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
+    # # pwsh or powershell
+    # if command_exists('pwsh'):
+    #     pwsh_win = home.joinpath('Documents', 'PowerShell')
+    #     pwsh_unix = home.joinpath('.config', 'powershell')
+    #     pwsh_profile = pwsh_win if is_windows else pwsh_unix
+    #     backup_replace(repo.joinpath('powershell'), pwsh_profile)
 
-    # windows-terminal-preview
-    if command_exists('wtp'):
-        wt = repo.joinpath('wt.json')
-        wtp_settings_path = home.joinpath('scoop', 'apps',
-                                      'windows-terminal-preview', 'current',
-                                      'settings', 'settings.json')
-        backup_replace(wt, wtp_settings_path)
+    # # starship
+    # if command_exists('starship'):
+    #     backup_replace(repo.joinpath('starship.toml'),
+    # home.joinpath('.config', 'starship.toml'))
+
+    # # gitconfig
+    # if command_exists('git'):
+    #     gitconf = '.gitconfig'
+    #     backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
+
+    # # windows-terminal-preview
+    # if command_exists('wtp'):
+    #     wt = repo.joinpath('wt.json')
+    #     wtp_settings_path = home.joinpath('scoop', 'apps',
+    #                                   'windows-terminal-preview', 'current',
+    #                                   'settings', 'settings.json')
+    #     backup_replace(wt, wtp_settings_path)
