@@ -28,7 +28,7 @@ if __name__ == '__main__':
         winpath = home.joinpath('AppData', 'Local', 'nvim')
         unixpath = home.joinpath('.config', 'nvim')
         path = winpath if is_windows else unixpath
-        backup_replace(repo.joinpath('nvim', path)
+        backup_replace(repo.joinpath('nvim'), path)
 
     # # vim
     # if command_exists('vim'):

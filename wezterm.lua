@@ -9,4 +9,12 @@ config.font = wezterm.font 'Maple Mono SC NF'
 
 config.color_scheme = 'Everforest Light (Gogh)'
 
+config.keys = {
+  {
+    key = 'n',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.ToggleFullScreen,
+  },
+}
+
 return config
