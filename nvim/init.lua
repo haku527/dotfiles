@@ -13,6 +13,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+
 require("lazy").setup({
     {
         "typicode/bg.nvim",
@@ -35,12 +36,39 @@ require("lazy").setup({
             sign_column_background = 'low',
             diagnostic_virtual_text = "coloured",
           })
-        end
-    }
+        end,
+    },
+    {
+        "keaising/im-select.nvim",
+        config = function()
+            require("im_select").setup({
+                -- options here
+                -- keep_quiet_on_no_binary = false,
+            })
+        end,
+        -- temp disable on linux
+        cond = jit.os == 'Windows'
+    },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup({
+                -- options here
+                options = {
+                    theme = 'everforest'
+                }
+            })
+        end,
+
+    },
+    
 })
 
 
-vim.opt.background = 'light'
+vim.opt.background = 'dark'
+-- 使用系统的剪贴板
+vim.opt.clipboard = 'unnamedplus'
 vim.cmd.colorscheme('everforest')
 
 vim.opt.number = true
@@ -51,3 +79,7 @@ indent_value = 4
 vim.opt.tabstop = indent_value
 vim.opt.shiftwidth = indent_value
 vim.opt.expandtab = true
+
+if vim.g.neovide then
+    vim.o.guifont = 'Maple Mono SC NF:h12'
+end
