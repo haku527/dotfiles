@@ -7,7 +7,7 @@ config.hide_tab_bar_if_only_one_tab = true
 
 config.font = wezterm.font 'Maple Mono SC NF'
 
-config.color_scheme = 'Everforest Light (Gogh)'
+config.color_scheme = 'tokyonight-storm'
 
 config.keys = {
   {
@@ -16,5 +16,13 @@ config.keys = {
     action = wezterm.action.ToggleFullScreen,
   },
 }
+
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+    -- 只在scoop pwsh安装后应用
+    res = wezterm.glob('pwsh', os.getenv('USERPROFILE') .. '/scoop/apps')
+    if #res ~= 0 then
+        config.default_prog = { 'pwsh.exe' }
+    end
+end
 
 return config
