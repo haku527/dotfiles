@@ -1,9 +1,5 @@
 [credential]
 	helper = manager
-[http]
-	proxy = http://localhost:7897
-[https]
-	proxy = http://localhost:7897
 [user]
 	name = haku
 	email = haku1206@outlook.com
