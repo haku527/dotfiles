@@ -50,7 +50,8 @@ if __name__ == '__main__':
     # gitconfig
     if command_exists('git'):
         gitconf = '.gitconfig'
-        backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
+        repofile = 'gitconfig.windows' if is_windows else 'gitconfig.linux'
+        backup_replace(repo.joinpath(repofile), home.joinpath(gitconf))
 
     # # windows-terminal-preview
     # if command_exists('wtp'):

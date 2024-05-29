@@ -1,0 +1,6 @@
+[credential]
+	helper = manager
+	credentialStore = cache
+[user]
+	name = haku
+	email = haku1206@outlook.com
