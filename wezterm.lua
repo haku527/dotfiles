@@ -25,4 +25,11 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     end
 end
 
+if wezterm.target_triple == 'x86_64-unkonwn-linux-gnu' then
+    res = os.execute('which zsh')
+    if res == true then
+        config.default_prog = { 'zsh' }
+    end
+end
+
 return config

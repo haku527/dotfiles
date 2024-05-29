@@ -35,22 +35,22 @@ if __name__ == '__main__':
     #     folder = 'vimfiles' if is_windows else '.vim'
     #     backup_replace(repo.joinpath('vim'), home.joinpath(folder))
 
-    # # pwsh or powershell
-    # if command_exists('pwsh'):
-    #     pwsh_win = home.joinpath('Documents', 'PowerShell')
-    #     pwsh_unix = home.joinpath('.config', 'powershell')
-    #     pwsh_profile = pwsh_win if is_windows else pwsh_unix
-    #     backup_replace(repo.joinpath('powershell'), pwsh_profile)
+    # pwsh or powershell
+    if command_exists('pwsh'):
+        pwsh_win = home.joinpath('Documents', 'PowerShell')
+        pwsh_unix = home.joinpath('.config', 'powershell')
+        pwsh_profile = pwsh_win if is_windows else pwsh_unix
+        backup_replace(repo.joinpath('powershell'), pwsh_profile)
 
-    # # starship
-    # if command_exists('starship'):
-    #     backup_replace(repo.joinpath('starship.toml'),
-    # home.joinpath('.config', 'starship.toml'))
+    # starship
+    if command_exists('starship'):
+        filename = 'starship.toml'
+        backup_replace(repo.joinpath(filename), home.joinpath('.config', filename))
 
-    # # gitconfig
-    # if command_exists('git'):
-    #     gitconf = '.gitconfig'
-    #     backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
+    # gitconfig
+    if command_exists('git'):
+        gitconf = '.gitconfig'
+        backup_replace(repo.joinpath(gitconf), home.joinpath(gitconf))
 
     # # windows-terminal-preview
     # if command_exists('wtp'):
