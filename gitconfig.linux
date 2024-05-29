@@ -4,3 +4,5 @@
 [user]
 	name = haku
 	email = haku1206@outlook.com
+[core]
+	editor = nvim

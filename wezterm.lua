@@ -6,6 +6,7 @@ local config = wezterm.config_builder()
 config.hide_tab_bar_if_only_one_tab = true
 
 config.font = wezterm.font 'Maple Mono SC NF'
+config.font_size = 10.5
 
 config.color_scheme = 'tokyonight-storm'
 
@@ -25,9 +26,8 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     end
 end
 
-if wezterm.target_triple == 'x86_64-unkonwn-linux-gnu' then
-    res = os.execute('which zsh')
-    if res == true then
+if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
+    if os.execute('which zsh') == true then
         config.default_prog = { 'zsh' }
     end
 end
