@@ -18,7 +18,7 @@ require("lazy").setup({
     {
         "typicode/bg.nvim",
         lazy = false,
-        -- not work on windows, so load on condiction
+        -- 此插件只适合unix
         cond = jit.os ~= 'Windows'
     },
     {
@@ -46,7 +46,7 @@ require("lazy").setup({
                 -- keep_quiet_on_no_binary = false,
             })
         end,
-        -- temp disable on linux
+        -- 暂时只在windows使用
         cond = jit.os == 'Windows'
     },
     {
@@ -65,23 +65,36 @@ require("lazy").setup({
     
 })
 
-
-vim.opt.background = 'dark'
 -- 使用系统的剪贴板
 vim.opt.clipboard = 'unnamedplus'
+-- 设置深色背景
+vim.opt.background = 'dark'
+-- 设置主题
 vim.cmd.colorscheme('everforest')
 
+-- 启用行数显示
 vim.opt.number = true
+-- 搜索时忽略大小写
 vim.opt.ignorecase = true
 vim.opt.wrap = true
 vim.opt.breakindent = true
-indent_value = 4
+
+-- 四字符缩进，空格代替制表符
+local indent_value = 4
 vim.opt.tabstop = indent_value
 vim.opt.shiftwidth = indent_value
 vim.opt.expandtab = true
 
 -- 只在windows下使用neovide
 if vim.g.neovide then
+    -- 字体
     vim.o.guifont = 'Maple Mono SC NF:h12'
+    -- neovide padding的单位好像是像素，文档没写
+    local padding = 8
+    vim.g.neovide_padding_top = padding
+    vim.g.neovide_padding_bottom = padding
+    vim.g.neovide_padding_right = padding
+    vim.g.neovide_padding_left = padding
+    -- 按下f11切换全屏模式
     vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
 end
