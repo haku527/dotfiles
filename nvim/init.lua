@@ -109,7 +109,9 @@ vim.opt.expandtab = true
 -- 只在windows下使用neovide
 if vim.g.neovide then
     -- 字体
-    vim.o.guifont = 'Maple Mono SC NF:h12:#e-subpixelantialias'
+    vim.o.guifont = 'Maple Mono SC NF' ..
+        ':h12:#e-subpixelantialias' ..
+        ':#h-slight'
     -- neovide padding的单位好像是像素，文档没写
     local padding = 4
     vim.g.neovide_refresh_rate = 120
