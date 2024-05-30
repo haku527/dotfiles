@@ -47,7 +47,8 @@ require("lazy").setup({
             })
         end,
         -- 暂时只在windows使用
-        cond = jit.os == 'Windows'
+        -- cond = jit.os == 'Windows'
+        cond = vim.fn.has('win32')
     },
     {
         'nvim-lualine/lualine.nvim',
@@ -106,8 +107,7 @@ vim.opt.tabstop = indent_value
 vim.opt.shiftwidth = indent_value
 vim.opt.expandtab = true
 
--- 只在windows下使用neovide
-if vim.g.neovide then
+if vim.g.neovide and vim.fn.has('win32') then
     -- 字体
     vim.o.guifont = 'Maple Mono SC NF' ..
         ':h12:#e-subpixelantialias' ..
