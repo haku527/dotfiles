@@ -21,23 +21,23 @@ require("lazy").setup({
         -- 此插件只适合unix
         cond = jit.os ~= 'Windows'
     },
-    {
-        "neanias/everforest-nvim",
-        version = false,
-        lazy = false,
-        priority = 1000, -- make sure to load this before all the other start plugins
-        -- Optional; default configuration will be used if setup isn't called.
-        config = function()
-          require("everforest").setup({
-            -- Your config here
-            -- check using ':h everforest'
-            background = 'soft',
-            disable_italic_comments = true,
-            sign_column_background = 'low',
-            diagnostic_virtual_text = "coloured",
-          })
-        end,
-    },
+    -- {
+    --     "neanias/everforest-nvim",
+    --     version = false,
+    --     lazy = false,
+    --     priority = 1000, -- make sure to load this before all the other start plugins
+    --     -- Optional; default configuration will be used if setup isn't called.
+    --     config = function()
+    --       require("everforest").setup({
+    --         -- Your config here
+    --         -- check using ':h everforest'
+    --         background = 'soft',
+    --         disable_italic_comments = true,
+    --         sign_column_background = 'low',
+    --         diagnostic_virtual_text = "coloured",
+    --       })
+    --     end,
+    -- },
     {
         "keaising/im-select.nvim",
         config = function()
@@ -56,22 +56,43 @@ require("lazy").setup({
             require('lualine').setup({
                 -- options here
                 options = {
-                    theme = 'everforest'
+                    -- theme = 'everforest'
+                    icons_enabled = false,
+                    theme = 'tokyonight',
+                    component_separators = '',
+                    section_separators = '',
                 }
             })
         end,
 
     },
-    
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require('tokyonight').setup({
+                styles = {
+                    comments = {italic = false },
+                }
+            })
+        end,
+    },
+    {
+        -- trim trailing whitespaces and empty lines
+        "mcauley-penney/tidy.nvim",
+        config = true,
+    },
 })
 
 -- 使用系统的剪贴板
 vim.opt.clipboard = 'unnamedplus'
--- 设置深色背景
-vim.opt.background = 'dark'
+-- 设置背景
+vim.opt.background = 'light'
 -- 设置主题
-vim.cmd.colorscheme('everforest')
+vim.cmd.colorscheme('tokyonight')
 
+vim.opt.colorcolumn = '80'
 -- 启用行数显示
 vim.opt.number = true
 -- 搜索时忽略大小写
