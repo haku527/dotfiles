@@ -3,3 +3,5 @@
 [user]
 	name = haku
 	email = haku1206@outlook.com
+[http]
+	proxy = http://localhost:7890
