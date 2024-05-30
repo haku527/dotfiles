@@ -30,10 +30,10 @@ if __name__ == '__main__':
         path = winpath if is_windows else unixpath
         backup_replace(repo.joinpath('nvim'), path)
 
-    # # vim
-    # if command_exists('vim'):
-    #     folder = 'vimfiles' if is_windows else '.vim'
-    #     backup_replace(repo.joinpath('vim'), home.joinpath(folder))
+    # vim
+    if command_exists('vim'):
+        folder = 'vimfiles' if is_windows else '.vim'
+        backup_replace(repo.joinpath('vim'), home.joinpath(folder))
 
     # pwsh or powershell
     if command_exists('pwsh'):
