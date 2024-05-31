@@ -108,7 +108,9 @@ vim.opt.expandtab = true
 
 if vim.g.neovide and vim.fn.has('win32') then
     -- 字体
-    vim.o.guifont = 'Maple Mono SC NF' ..
+    -- vim.o.guifont = 'Maple Mono SC NF' ..
+    vim.o.guifont = 'FiraCode Nerd Font Mono,' ..
+        '思源等宽' ..
         ':h12:#e-subpixelantialias' ..
         ':#h-slight'
     -- neovide padding的单位好像是像素，文档没写

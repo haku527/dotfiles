@@ -19,6 +19,10 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     if #res ~= 0 then
         config.default_prog = { 'pwsh.exe' }
     end
+    config.font = wezterm.font_with_fallback {
+        'FiraCode Nerd Font Mono',
+	    '思源等宽',
+    }
 end
 
 if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
