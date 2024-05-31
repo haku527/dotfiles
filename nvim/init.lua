@@ -47,8 +47,7 @@ require("lazy").setup({
             })
         end,
         -- 暂时只在windows使用
-        -- cond = jit.os == 'Windows'
-        cond = vim.fn.has('win32')
+        cond = jit.os == 'Windows'
     },
     {
         'nvim-lualine/lualine.nvim',

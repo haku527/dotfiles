@@ -6,3 +6,5 @@
 	email = haku1206@outlook.com
 [core]
 	editor = nvim
+[http]
+	proxy = http://10.1.20.4:7897
