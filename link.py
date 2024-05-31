@@ -56,4 +56,4 @@ if __name__ == '__main__':
     # zsh
     if command_exists('zsh'):
         repofile = repo.joinpath('zshrc')
-        backup_replace(repofile, home.joinpath('.zshrc')
+        backup_replace(repofile, home.joinpath('.zshrc'))
