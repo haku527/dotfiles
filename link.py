@@ -53,10 +53,7 @@ if __name__ == '__main__':
         repofile = 'gitconfig.windows' if is_windows else 'gitconfig.linux'
         backup_replace(repo.joinpath(repofile), home.joinpath(gitconf))
 
-    # # windows-terminal-preview
-    # if command_exists('wtp'):
-    #     wt = repo.joinpath('wt.json')
-    #     wtp_settings_path = home.joinpath('scoop', 'apps',
-    #                                   'windows-terminal-preview', 'current',
-    #                                   'settings', 'settings.json')
-    #     backup_replace(wt, wtp_settings_path)
+    # zsh
+    if command_exists('zsh'):
+        repofile = repo.joinpath('zshrc')
+        backup_replace(repofile, home.joinpath('.zshrc')
