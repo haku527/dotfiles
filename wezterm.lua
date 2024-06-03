@@ -14,25 +14,25 @@ config.keys = {
 }
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-    -- 只在scoop pwsh安装后应用
-    res = wezterm.glob('pwsh', os.getenv('USERPROFILE') .. '/scoop/apps')
-    if #res ~= 0 then
-        config.default_prog = { 'pwsh.exe' }
-    end
-    config.font = wezterm.font_with_fallback {
-        'FiraCode Nerd Font Mono',
-	    '思源等宽',
-    }
+  -- 只在scoop pwsh安装后应用
+  res = wezterm.glob('pwsh', os.getenv('USERPROFILE') .. '/scoop/apps')
+  if #res ~= 0 then
+    config.default_prog = { 'pwsh.exe' }
+  end
+  config.font = wezterm.font_with_fallback {
+    'FiraCode Nerd Font Mono',
+    '思源等宽',
+  }
 end
 
 if wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
-    if os.execute('which zsh') == true then
-        config.default_prog = { 'zsh' }
-    end
-    config.font = wezterm.font_with_fallback {
-        'Fira Code Nerd Font Mono',
-	    'Source Han Sans CN',
-    }
+  if os.execute('which zsh') == true then
+    config.default_prog = { 'zsh' }
+  end
+  config.font = wezterm.font_with_fallback {
+    'Fira Code Nerd Font Mono',
+    'Source Han Sans CN',
+  }
 end
 
 return config
