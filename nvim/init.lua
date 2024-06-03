@@ -1,3 +1,3 @@
 require('plugin_manager')
-require('basic')
+require('common')
 require('neovide')
