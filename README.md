@@ -1,6 +1,20 @@
 # dotfiles
 configurations
 
+## usage
+
+execute link.py to create symlink for these configurations:
+
+```
+python ./link.py
+```
+
+for some linux distro you need:
+
+```
+python3 ./link.py
+```
+
 ## memo
 
 - Using [scoop](https://scoop.sh/) package manager on windows
