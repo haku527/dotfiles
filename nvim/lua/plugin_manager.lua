@@ -20,23 +20,23 @@ require("lazy").setup({
     lazy = false,
     cond = jit.os ~= 'Windows'
   },
-    -- {
-    --     "neanias/everforest-nvim",
-    --     version = false,
-    --     lazy = false,
-    --     priority = 1000, -- make sure to load this before all the other start plugins
-    --     -- Optional; default configuration will be used if setup isn't called.
-    --     config = function()
-    --       require("everforest").setup({
-    --         -- Your config here
-    --         -- check using ':h everforest'
-    --         background = 'soft',
-    --         disable_italic_comments = true,
-    --         sign_column_background = 'low',
-    --         diagnostic_virtual_text = "coloured",
-    --       })
-    --     end,
-    -- },
+-- {
+--     "neanias/everforest-nvim",
+--     version = false,
+--     lazy = false,
+--     priority = 1000, -- make sure to load this before all the other start plugins
+--     -- Optional; default configuration will be used if setup isn't called.
+--     config = function()
+--       require("everforest").setup({
+--         -- Your config here
+--         -- check using ':h everforest'
+--         background = 'soft',
+--         disable_italic_comments = true,
+--         sign_column_background = 'low',
+--         diagnostic_virtual_text = "coloured",
+--       })
+--     end,
+-- },
   {
     "keaising/im-select.nvim",
     config = function()
@@ -80,23 +80,13 @@ require("lazy").setup({
     "mcauley-penney/tidy.nvim",
     config = true,
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   config = function()
-  --     require'lspconfig'.pyright.setup({
-  --       cmd: { "pyright-langserver", "--stdio" },
-  --       filetypes: { "python" },
-  --       settings: {
-  --         python = {
-  --           analysis = {
-  --             autoSearchPaths = true,
-  --             diagnosticMode = "openFilesOnly",
-  --             useLibraryCodeForTypes = true
-  --           }
-  --         }
-  --       }
-  --       single_file_support: true,
-  --     })
-  --   end,
-  -- }
+  {
+    -- 'williamboman/mason.nvim',
+    -- 'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+  },
 })
+
+--require('mason').setup()
+--require('mason-lspconfig').setup()
+require('lspconfig').pyright.setup{}
