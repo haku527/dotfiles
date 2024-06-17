@@ -7,3 +7,5 @@
 	proxy = http://localhost:7897
 [credential "helperselector"]
 	selected = manager
+[core]
+	autocrlf = false
