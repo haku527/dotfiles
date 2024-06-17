@@ -1,6 +1,5 @@
-export HTTP_PROXY='http://10.1.20.4:7897'
-export HTTPS_PROXY='http://10.1.20.4:7897'
-
+export HTTP_PROXY='http://10.1.20.14:7897'
+export HTTPS_PROXY=$HTTP_PROXY
 
 
 export BAT_THEME='Coldark-Cold'
