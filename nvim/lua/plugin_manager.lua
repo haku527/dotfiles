@@ -136,12 +136,12 @@ require('mason-lspconfig').setup({
     'pyright',
     'tsserver',
     'lua_ls',
+    'typst_lsp',
   },
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
     end,
-
     lua_ls = function()
       require('lspconfig').lua_ls.setup({
         on_init = function(client)
