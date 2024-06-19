@@ -10,8 +10,8 @@
 local v = vim
 
 local encoding = 'UTF-8'
-v.g.encoding = encoding
--- vim.o.fileencoding = encoding
+-- v.g.encoding = encoding
+vim.o.fileencoding = encoding
 
 local indent_value = 2
 v.o.tabstop = indent_value
