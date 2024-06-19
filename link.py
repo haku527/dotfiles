@@ -1,60 +1,70 @@
 import os
 import shutil
-
 from pathlib import Path
 from datetime import datetime
 
-repo = Path(__file__).parent
-home = Path.home()
+timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
 
-is_windows = os.name == 'nt'
-timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+# source是repo已有的文件（夹），target是要建立符号链接的路径
+def backup_replace(source: Path, target: Path) -> None:
+    if target.exists(follow_symlinks=False):
+        newname = target.stem + timestamp + target.suffix
+        target.rename(target.parent.joinpath(newname))
+    target.symlink_to(source, target_is_directory=source.is_dir())
 
-# source是repo已有的文件（夹），target是要建立链接的路径
-def backup_replace(source: Path, target: Path):
-  if target.exists(follow_symlinks=False):
-    newname = target.stem + timestamp + target.suffix
-    target.rename(target.parent.joinpath(newname))
-  target.symlink_to(source, target_is_directory=source.is_dir())
 
-def command_exists(command: str):
-  return shutil.which(command) != None
+def command_exists(command: str) -> bool:
+    return shutil.which(command) != None
 
-if __name__ == '__main__':
-  # wezterm
-  backup_replace(repo.joinpath('wezterm.lua'), home.joinpath('.wezterm.lua'))
 
-  # nvim
-  if command_exists('nvim'):
-    winpath = home.joinpath('AppData', 'Local', 'nvim')
-    unixpath = home.joinpath('.config', 'nvim')
-    path = winpath if is_windows else unixpath
-    backup_replace(repo.joinpath('nvim'), path)
+def add_dot(name: str) -> str:
+    return "." + name
 
-  # vim
-  if command_exists('vim'):
-    folder = 'vimfiles' if is_windows else '.vim'
-    backup_replace(repo.joinpath('vim'), home.joinpath(folder))
 
-  # pwsh or powershell
-  if command_exists('pwsh'):
-    pwsh_win = home.joinpath('Documents', 'PowerShell')
-    pwsh_unix = home.joinpath('.config', 'powershell')
-    pwsh_profile = pwsh_win if is_windows else pwsh_unix
-    backup_replace(repo.joinpath('powershell'), pwsh_profile)
+if __name__ == "__main__":
 
-  # starship
-  if command_exists('starship'):
-    filename = 'starship.toml'
-    backup_replace(repo.joinpath(filename), home.joinpath('.config', filename))
+    repo = Path(__file__).parent
+    home = Path.home()
 
-  # gitconfig
-  if command_exists('git'):
-    gitconf = '.gitconfig'
-    repofile = 'gitconfig.windows' if is_windows else 'gitconfig.linux'
-    backup_replace(repo.joinpath(repofile), home.joinpath(gitconf))
+    is_windows = os.name == "nt"
 
-  # zsh
-  if command_exists('zsh'):
-    repofile = repo.joinpath('zshrc')
-    backup_replace(repofile, home.joinpath('.zshrc'))
+    # wezterm
+    if command_exists("wezterm"):
+        filename = "wezterm.lua"
+        source = repo.joinpath(filename)
+        target = home.joinpath(add_dot(filename))
+        backup_replace(source, target)
+
+    # nvim
+    if command_exists("nvim"):
+        winpath = home.joinpath("AppData", "Local", "nvim")
+        unixpath = home.joinpath(".config", "nvim")
+        target = winpath if is_windows else unixpath
+        backup_replace(repo.joinpath("nvim"), target)
+
+    # pwsh or powershell
+    if command_exists("pwsh"):
+        winpath = home.joinpath("Documents", "PowerShell")
+        unixpath = home.joinpath(".config", "powershell")
+        target = winpath if is_windows else unixpath
+        backup_replace(repo.joinpath("powershell"), target)
+
+    # starship
+    if command_exists("starship"):
+        filename = "starship.toml"
+        source = repo.joinpath(filename)
+        target = home.joinpath(".config", filename)
+        backup_replace(source, target)
+
+    # gitconfig
+    if command_exists("git"):
+        target = home.joinpath(".gitconfig")
+        repofile = "gitconfig.windows" if is_windows else "gitconfig.linux"
+        backup_replace(repo.joinpath(repofile), target)
+
+    # zsh
+    if command_exists("zsh"):
+        filename = "zshrc"
+        source = repo.joinpath("zshrc")
+        target = home.joinpath(add_dot(filename))
+        backup_replace(source, home.joinpath(".zshrc"))
