@@ -1,7 +1,8 @@
+local v = vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
+if not (v.uv or v.loop).fs_stat(lazypath) then
+  v.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
@@ -11,7 +12,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   })
 end
 
-vim.opt.rtp:prepend(lazypath)
+v.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
@@ -54,8 +55,6 @@ require("lazy").setup({
       require('lualine').setup({
         -- options here
         options = {
-          -- theme = 'everforest'
-          -- theme = 'tokyonight',
           icons_enabled = false,
           component_separators = '',
           section_separators = '',
@@ -96,16 +95,20 @@ require("lazy").setup({
   {'hrsh7th/nvim-cmp'},
   {'L3MON4D3/LuaSnip'},
   {
+    'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+  {
     'f-person/auto-dark-mode.nvim',
     config = function()
       require('auto-dark-mode').setup({
         update_interval = 1000,
         set_dark_mode = function()
-          vim.api.nvim_set_option("background", "dark")
+          vim.opt.background = 'dark'
           vim.cmd("colorscheme everforest")
         end,
         set_light_mode = function()
-          vim.api.nvim_set_option("background", "light")
+          vim.opt.background = 'light'
           vim.cmd("colorscheme tokyonight")
         end,
 
@@ -114,6 +117,11 @@ require("lazy").setup({
   },
 })
 
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
@@ -132,6 +140,39 @@ require('mason-lspconfig').setup({
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
+    end,
+
+    lua_ls = function()
+      require('lspconfig').lua_ls.setup({
+        on_init = function(client)
+          local path = client.workspace_folders[1].name
+          if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+            return
+          end
+          client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = {
+              -- Tell the language server which version of Lua you're using
+              -- (most likely LuaJIT in the case of Neovim)
+              version = 'LuaJIT'
+            },
+            -- Make the server aware of Neovim runtime files
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                vim.env.VIMRUNTIME,
+                -- Depending on the usage, you might want to add additional paths here.
+                "${3rd}/luv/library",
+                -- "${3rd}/busted/library",
+              }
+              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+              -- library = vim.api.nvim_get_runtime_file("", true)
+            }
+          })
+        end,
+        settings = {
+          Lua = {}
+        }
+      })
     end,
   },
 })
