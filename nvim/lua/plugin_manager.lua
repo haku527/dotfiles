@@ -20,23 +20,23 @@ require("lazy").setup({
     lazy = false,
     cond = jit.os ~= 'Windows'
   },
--- {
---     "neanias/everforest-nvim",
---     version = false,
---     lazy = false,
---     priority = 1000, -- make sure to load this before all the other start plugins
---     -- Optional; default configuration will be used if setup isn't called.
---     config = function()
---       require("everforest").setup({
---         -- Your config here
---         -- check using ':h everforest'
---         background = 'soft',
---         disable_italic_comments = true,
---         sign_column_background = 'low',
---         diagnostic_virtual_text = "coloured",
---       })
---     end,
--- },
+  {
+    "neanias/everforest-nvim",
+    version = false,
+    lazy = false,
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- Optional; default configuration will be used if setup isn't called.
+    config = function()
+      require("everforest").setup({
+        -- Your config here
+        -- check using ':h everforest'
+        -- background = 'soft',
+        disable_italic_comments = true,
+        sign_column_background = 'low',
+        diagnostic_virtual_text = "coloured",
+      })
+    end,
+  },
   {
     "keaising/im-select.nvim",
     config = function()
@@ -55,7 +55,7 @@ require("lazy").setup({
         -- options here
         options = {
           -- theme = 'everforest'
-          theme = 'tokyonight',
+          -- theme = 'tokyonight',
           icons_enabled = false,
           component_separators = '',
           section_separators = '',
@@ -95,6 +95,23 @@ require("lazy").setup({
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
   {'L3MON4D3/LuaSnip'},
+  {
+    'f-person/auto-dark-mode.nvim',
+    config = function()
+      require('auto-dark-mode').setup({
+        update_interval = 1000,
+        set_dark_mode = function()
+          vim.api.nvim_set_option("background", "dark")
+          vim.cmd("colorscheme everforest")
+        end,
+        set_light_mode = function()
+          vim.api.nvim_set_option("background", "light")
+          vim.cmd("colorscheme tokyonight")
+        end,
+
+      })
+    end,
+  },
 })
 
 local lsp_zero = require('lsp-zero')
@@ -110,6 +127,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'pyright',
     'tsserver',
+    'lua_ls',
   },
   handlers = {
     function(server_name)
