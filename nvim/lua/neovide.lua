@@ -5,7 +5,7 @@ if v.g.neovide and jit.os == 'Windows' then
   -- vim.o.guifont = 'Maple Mono SC NF' ..
   v.o.guifont = 'FiraCode Nerd Font Mono,' ..
     '思源等宽' ..
-    ':h12:#e-subpixelantialias' ..
+    ':h10.5:#e-subpixelantialias' ..
     ':#h-slight'
   v.g.neovide_refresh_rate = 120
   -- neovide padding的单位好像是像素，文档没写
