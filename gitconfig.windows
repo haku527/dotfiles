@@ -9,3 +9,4 @@
 	selected = manager
 [core]
 	autocrlf = false
+	editor = neovide
