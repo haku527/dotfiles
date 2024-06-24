@@ -25,6 +25,6 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 #
 #Set-PSReadLineOption -ViModeIndicator Script -ViModeChangeHandler $Function:OnViModeChange
 
-Import-Module PSFzf
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
-Invoke-Expression (&starship init powershell)
+# Import-Module PSFzf
+# Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
+# Invoke-Expression (&starship init powershell)

@@ -28,6 +28,7 @@ config.keys = {
   },
 }
 
+config.font_size = 10.5
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   -- 只在scoop pwsh安装后应用
   local res = wezterm.glob('pwsh', os.getenv('USERPROFILE') .. '/scoop/apps')
