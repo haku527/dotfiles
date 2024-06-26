@@ -176,3 +176,18 @@ require('mason-lspconfig').setup({
     end,
   },
 })
+
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+cmp.setup({
+  preselect = 'item',
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = cmp_action.luasnip_supertab(),
+    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+  }),
+})
