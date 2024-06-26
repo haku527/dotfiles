@@ -47,7 +47,7 @@ if __name__ == "__main__":
         winpath = home.joinpath("Documents", "PowerShell")
         unixpath = home.joinpath(".config", "powershell")
         target = winpath if is_windows else unixpath
-        backup_replace(repo.joinpath("powershell"), target)
+        backup_replace(repo.joinpath("pwsh"), target)
 
     # starship
     if command_exists("starship"):
